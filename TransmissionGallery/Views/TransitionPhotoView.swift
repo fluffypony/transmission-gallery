@@ -12,7 +12,8 @@ struct TransitionPhotoView: View {
         PresentationSourceViewLink(
             transition: .matchedGeometry(
                 preferredFromCornerRadius: .rounded(cornerRadius: 8),
-                prefersScaleEffect: true,
+                prefersScaleEffect: false,
+                minimumScaleFactor: 1.0,
                 isInteractive: true
             )
         ) {
