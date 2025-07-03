@@ -10,34 +10,30 @@ struct TransitionPhotoView: View {
     @State private var selectedPhoto: Photo?
     
     var body: some View {
-        ZStack {
-            PhotoThumbnailView(photo: photo, viewModel: viewModel)
-        }
-        .aspectRatio(1, contentMode: .fit)
-        .clipped()
-        .onTapGesture {
-            selectedPhoto = photo
-            isPresented = true
-        }
-        .presentation(
-            transition: .matchedGeometry(
-                preferredFromCornerRadius: .rounded(cornerRadius: 8),
-                prefersScaleEffect: false,
-                isInteractive: true
-            ),
-            isPresented: $isPresented
-        ) {
-            FullscreenPhotoView(
-                photo: photo,
-                allPhotos: allPhotos,
-                selectedPhoto: $selectedPhoto
-            )
-        }
-        .onChange(of: selectedPhoto) { _, newValue in
-            if newValue == nil {
-                isPresented = false
+        PhotoThumbnailView(photo: photo, viewModel: viewModel)
+            .onTapGesture {
+                selectedPhoto = photo
+                isPresented = true
             }
-        }
+            .presentation(
+                transition: .matchedGeometry(
+                    preferredFromCornerRadius: .rounded(cornerRadius: 8),
+                    prefersScaleEffect: false,
+                    isInteractive: true
+                ),
+                isPresented: $isPresented
+            ) {
+                FullscreenPhotoView(
+                    photo: photo,
+                    allPhotos: allPhotos,
+                    selectedPhoto: $selectedPhoto
+                )
+            }
+            .onChange(of: selectedPhoto) { _, newValue in
+                if newValue == nil {
+                    isPresented = false
+                }
+            }
     }
 }
 

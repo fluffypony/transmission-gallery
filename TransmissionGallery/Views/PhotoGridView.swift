@@ -58,6 +58,8 @@ struct PhotoGridView: View {
                             allPhotos: viewModel.photos,
                             viewModel: viewModel
                         )
+                        .aspectRatio(1, contentMode: .fit)
+                        .clipped()
                         .cornerRadius(8)
                     }
                 }
