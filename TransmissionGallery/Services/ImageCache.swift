@@ -61,11 +61,6 @@ class ImageCache {
     
     // MARK: - Cache Statistics
     
-    var thumbnailCacheInfo: (count: Int, cost: Int) {
-        (thumbnailCache.count, thumbnailCache.totalCost)
-    }
-    
-    var fullImageCacheInfo: (count: Int, cost: Int) {
-        (fullImageCache.count, fullImageCache.totalCost)
-    }
+    // Note: NSCache doesn't expose count/totalCost properties
+    // These would require custom tracking if needed for debugging
 }
