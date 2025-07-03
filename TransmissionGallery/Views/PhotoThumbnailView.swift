@@ -8,7 +8,7 @@ struct PhotoThumbnailView: View {
     @State private var isLoading = true
     
     var body: some View {
-        Group {
+        ZStack {
             if let thumbnailImage = thumbnailImage {
                 Image(uiImage: thumbnailImage)
                     .resizable()
@@ -29,6 +29,7 @@ struct PhotoThumbnailView: View {
                     )
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .task {
             await loadThumbnail()
         }

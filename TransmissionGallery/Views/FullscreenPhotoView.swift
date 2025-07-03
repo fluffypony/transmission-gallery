@@ -46,7 +46,6 @@ struct FullscreenPhotoView: View {
             VStack {
                 HStack {
                     Button("Done") {
-                        selectedPhoto = nil
                         presentationCoordinator.dismiss()
                     }
                     .foregroundColor(.white)
