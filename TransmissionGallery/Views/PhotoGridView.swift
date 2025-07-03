@@ -1,6 +1,5 @@
 import SwiftUI
 import Photos
-import Transmission
 
 struct PhotoGridView: View {
     @StateObject private var viewModel = PhotoGalleryViewModel()

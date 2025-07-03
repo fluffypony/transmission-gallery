@@ -6,14 +6,18 @@ let package = Package(
     platforms: [
         .iOS(.v13)
     ],
+    products: [
+        .executable(name: "TransmissionGallery", targets: ["TransmissionGallery"])
+    ],
     dependencies: [
-        .package(url: "https://github.com/nathantannar4/Transmission", from: "1.0.0")
     ],
     targets: [
-        .target(
+        .executableTarget(
             name: "TransmissionGallery",
-            dependencies: ["Transmission"],
-            path: "TransmissionGallery"
+            dependencies: [],
+            path: ".",
+            exclude: ["README.md", "LICENSE", ".gitignore", "TransmissionGallery/Info.plist"],
+            sources: ["TransmissionGallery"]
         )
     ]
 )

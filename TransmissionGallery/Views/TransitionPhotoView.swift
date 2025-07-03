@@ -1,5 +1,4 @@
 import SwiftUI
-import Transmission
 
 struct TransitionPhotoView: View {
     let photo: Photo
@@ -7,27 +6,25 @@ struct TransitionPhotoView: View {
     let viewModel: PhotoGalleryViewModel
     
     @State private var isPresented = false
+    @State private var selectedPhoto: Photo?
     
     var body: some View {
         PhotoThumbnailView(photo: photo, viewModel: viewModel)
             .aspectRatio(1, contentMode: .fill)
             .clipped()
             .onTapGesture {
+                selectedPhoto = photo
                 isPresented = true
             }
-            .presentationLink(
-                isPresented: $isPresented,
-                transition: .matchedGeometry(
-                    preferredFromCornerRadius: .rounded(cornerRadius: 8),
-                    prefersScaleEffect: true,
-                    isInteractive: true
-                )
-            ) {
-                TransmissionFullscreenView(
+            .fullScreenCover(isPresented: $isPresented) {
+                FullscreenPhotoView(
                     photo: photo,
                     allPhotos: allPhotos,
-                    isPresented: $isPresented
+                    selectedPhoto: $selectedPhoto
                 )
+                .onDisappear {
+                    selectedPhoto = nil
+                }
             }
     }
 }
