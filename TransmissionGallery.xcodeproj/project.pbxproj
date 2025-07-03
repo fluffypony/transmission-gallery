@@ -18,6 +18,7 @@
 		A1000017000000000000001 /* FullscreenPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000018000000000000001 /* FullscreenPhotoView.swift */; };
 		A1000019000000000000001 /* TransitionPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000020000000000000001 /* TransitionPhotoView.swift */; };
 		A1000021000000000000001 /* PermissionRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000022000000000000001 /* PermissionRequestView.swift */; };
+		A1000043000000000000001 /* Transmission in Frameworks */ = {isa = PBXBuildFile; productRef = A1000044000000000000001 /* Transmission */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1000043000000000000001 /* Transmission in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +132,9 @@
 			dependencies = (
 			);
 			name = TransmissionGallery;
+			packageProductDependencies = (
+				A1000044000000000000001 /* Transmission */,
+			);
 			productName = TransmissionGallery;
 			productReference = A1000023000000000000001 /* TransmissionGallery.app */;
 			productType = "com.apple.product-type.application";
@@ -158,6 +163,9 @@
 				Base,
 			);
 			mainGroup = A1000026000000000000001;
+			packageReferences = (
+				A1000045000000000000001 /* XCRemoteSwiftPackageReference "Transmission" */,
+			);
 			productRefGroup = A1000028000000000000001 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -406,6 +414,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A1000045000000000000001 /* XCRemoteSwiftPackageReference "Transmission" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nathantannar4/Transmission";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A1000044000000000000001 /* Transmission */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1000045000000000000001 /* XCRemoteSwiftPackageReference "Transmission" */;
+			productName = Transmission;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A1000037000000000000001 /* Project object */;
 }

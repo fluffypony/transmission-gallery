@@ -1,0 +1,33 @@
+{
+  "originHash" : "fc78a07dab42a493c5dc850fa23a822f4264240ddb99e3c461f739f5d807ac3c",
+  "pins" : [
+    {
+      "identity" : "engine",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nathantannar4/Engine",
+      "state" : {
+        "revision" : "fdf90836c00b32b276e487f86577ad7321c968f3",
+        "version" : "2.1.14"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax",
+      "state" : {
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
+      }
+    },
+    {
+      "identity" : "transmission",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nathantannar4/Transmission",
+      "state" : {
+        "revision" : "9c60fde3c8ef493d19c6bebfe8c4b6e44c691760",
+        "version" : "2.3.6"
+      }
+    }
+  ],
+  "version" : 3
+}

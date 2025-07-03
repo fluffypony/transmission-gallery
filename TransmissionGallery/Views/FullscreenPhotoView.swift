@@ -1,9 +1,11 @@
 import SwiftUI
+import Transmission
 
 struct FullscreenPhotoView: View {
     let photo: Photo
     let allPhotos: [Photo]
     @Binding var selectedPhoto: Photo?
+    @Environment(\.presentationCoordinator) private var presentationCoordinator
     
     @State private var fullImage: UIImage?
     @State private var isLoading = true
@@ -45,6 +47,7 @@ struct FullscreenPhotoView: View {
                 HStack {
                     Button("Done") {
                         selectedPhoto = nil
+                        presentationCoordinator.dismiss()
                     }
                     .foregroundColor(.white)
                     .padding()
