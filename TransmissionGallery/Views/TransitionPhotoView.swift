@@ -6,27 +6,36 @@ struct TransitionPhotoView: View {
     let allPhotos: [Photo]
     let viewModel: PhotoGalleryViewModel
     
+    @State private var isPresented = false
     @State private var selectedPhoto: Photo?
     
     var body: some View {
-        PresentationSourceViewLink(
-            transition: .matchedGeometry(
-                preferredFromCornerRadius: .rounded(cornerRadius: 8),
-                prefersScaleEffect: false,
-                minimumScaleFactor: 1.0,
-                isInteractive: true
-            )
-        ) {
-            FullscreenPhotoView(
-                photo: photo,
-                allPhotos: allPhotos,
-                selectedPhoto: $selectedPhoto
-            )
-        } label: {
-            PhotoThumbnailView(photo: photo, viewModel: viewModel)
-                .aspectRatio(1, contentMode: .fit)
-                .clipped()
-        }
+        PhotoThumbnailView(photo: photo, viewModel: viewModel)
+            .aspectRatio(1, contentMode: .fit)
+            .clipped()
+            .onTapGesture {
+                selectedPhoto = photo
+                isPresented = true
+            }
+            .presentation(
+                transition: .matchedGeometry(
+                    preferredFromCornerRadius: .rounded(cornerRadius: 8),
+                    prefersScaleEffect: false,
+                    isInteractive: true
+                ),
+                isPresented: $isPresented
+            ) {
+                FullscreenPhotoView(
+                    photo: photo,
+                    allPhotos: allPhotos,
+                    selectedPhoto: $selectedPhoto
+                )
+            }
+            .onChange(of: selectedPhoto) { _, newValue in
+                if newValue == nil {
+                    isPresented = false
+                }
+            }
     }
 }
 
