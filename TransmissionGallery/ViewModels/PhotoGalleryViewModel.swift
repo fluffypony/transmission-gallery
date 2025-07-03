@@ -36,12 +36,8 @@ class PhotoGalleryViewModel: ObservableObject {
         isLoading = true
         errorMessage = nil
         
-        do {
-            let fetchedPhotos = await photoService.fetchPhotos()
-            photos = fetchedPhotos
-        } catch {
-            errorMessage = "Failed to load photos: \(error.localizedDescription)"
-        }
+        let fetchedPhotos = await photoService.fetchPhotos()
+        photos = fetchedPhotos
         
         isLoading = false
     }
