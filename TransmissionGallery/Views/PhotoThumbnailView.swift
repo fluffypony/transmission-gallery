@@ -29,6 +29,8 @@ struct PhotoThumbnailView: View {
                     )
             }
         }
+        .aspectRatio(1, contentMode: .fill)
+        .clipped()
         .task {
             await loadThumbnail()
         }

@@ -23,9 +23,6 @@ struct TransitionPhotoView: View {
             )
         } label: {
             PhotoThumbnailView(photo: photo, viewModel: viewModel)
-                .aspectRatio(1, contentMode: .fill)
-                .clipped()
-                .cornerRadius(8)
         }
     }
 }
