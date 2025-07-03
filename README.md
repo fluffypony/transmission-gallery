@@ -14,7 +14,7 @@ A beautiful iOS photo gallery app built with SwiftUI, featuring smooth animation
 
 ## Requirements
 
-- iOS 13.0+
+- iOS 17.0+
 - Xcode 15+
 - Swift 5.9+
 
@@ -110,7 +110,7 @@ The app is designed to be easily customizable:
 
 1. **"No such module 'UIKit'" error**: Make sure you're building for iOS target, not macOS
 2. **Permission denied**: Check that photo access permissions are properly granted in Settings
-3. **Build failures**: Ensure Xcode 15+ and iOS 13+ deployment target
+3. **Build failures**: Ensure Xcode 15+ and iOS 17+ deployment target
 
 ### Debug Tips
 

@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "TransmissionGallery",
     platforms: [
-        .iOS(.v13)
+        .iOS(.v17)
     ],
     products: [
         .executable(name: "TransmissionGallery", targets: ["TransmissionGallery"])
