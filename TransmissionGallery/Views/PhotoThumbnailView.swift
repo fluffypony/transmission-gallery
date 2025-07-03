@@ -12,7 +12,7 @@ struct PhotoThumbnailView: View {
             if let thumbnailImage = thumbnailImage {
                 Image(uiImage: thumbnailImage)
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
+                    .scaledToFill()
             } else if isLoading {
                 Rectangle()
                     .fill(Color.gray.opacity(0.3))

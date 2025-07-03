@@ -10,30 +10,32 @@ struct TransitionPhotoView: View {
     @State private var selectedPhoto: Photo?
     
     var body: some View {
-        PhotoThumbnailView(photo: photo, viewModel: viewModel)
-            .onTapGesture {
-                selectedPhoto = photo
-                isPresented = true
+        Button(action: {
+            selectedPhoto = photo
+            isPresented = true
+        }) {
+            PhotoThumbnailView(photo: photo, viewModel: viewModel)
+        }
+        .buttonStyle(PlainButtonStyle())
+        .presentation(
+            transition: .matchedGeometry(
+                preferredFromCornerRadius: .rounded(cornerRadius: 8),
+                prefersScaleEffect: false,
+                isInteractive: true
+            ),
+            isPresented: $isPresented
+        ) {
+            FullscreenPhotoView(
+                photo: photo,
+                allPhotos: allPhotos,
+                selectedPhoto: $selectedPhoto
+            )
+        }
+        .onChange(of: selectedPhoto) { _, newValue in
+            if newValue == nil {
+                isPresented = false
             }
-            .presentation(
-                transition: .matchedGeometry(
-                    preferredFromCornerRadius: .rounded(cornerRadius: 8),
-                    prefersScaleEffect: false,
-                    isInteractive: true
-                ),
-                isPresented: $isPresented
-            ) {
-                FullscreenPhotoView(
-                    photo: photo,
-                    allPhotos: allPhotos,
-                    selectedPhoto: $selectedPhoto
-                )
-            }
-            .onChange(of: selectedPhoto) { _, newValue in
-                if newValue == nil {
-                    isPresented = false
-                }
-            }
+        }
     }
 }
 
