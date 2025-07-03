@@ -29,7 +29,15 @@ class PhotoService: ObservableObject {
     }
     
     func loadThumbnail(for photo: Photo) async -> UIImage? {
-        await withCheckedContinuation { continuation in
+        let cacheKey = "\(photo.id)_thumbnail"
+        
+        // Check cache first
+        if let cachedImage = ImageCache.shared.getThumbnail(forKey: cacheKey) {
+            return cachedImage
+        }
+        
+        // Load from PhotoKit
+        let image = await withCheckedContinuation { continuation in
             let options = PHImageRequestOptions()
             options.deliveryMode = .highQualityFormat
             options.isNetworkAccessAllowed = true
@@ -44,10 +52,25 @@ class PhotoService: ObservableObject {
                 continuation.resume(returning: image)
             }
         }
+        
+        // Cache the loaded image
+        if let image = image {
+            ImageCache.shared.setThumbnail(image, forKey: cacheKey)
+        }
+        
+        return image
     }
     
     func loadFullImage(for photo: Photo) async -> UIImage? {
-        await withCheckedContinuation { continuation in
+        let cacheKey = "\(photo.id)_full"
+        
+        // Check cache first
+        if let cachedImage = ImageCache.shared.getFullImage(forKey: cacheKey) {
+            return cachedImage
+        }
+        
+        // Load from PhotoKit
+        let image = await withCheckedContinuation { continuation in
             let options = PHImageRequestOptions()
             options.deliveryMode = .highQualityFormat
             options.isNetworkAccessAllowed = true
@@ -62,6 +85,13 @@ class PhotoService: ObservableObject {
                 continuation.resume(returning: image)
             }
         }
+        
+        // Cache the loaded image
+        if let image = image {
+            ImageCache.shared.setFullImage(image, forKey: cacheKey)
+        }
+        
+        return image
     }
     
     func loadHighQualityImage(for photo: Photo) async -> UIImage? {

@@ -1,9 +1,9 @@
 import SwiftUI
 import Photos
+import Transmission
 
 struct PhotoGridView: View {
     @StateObject private var viewModel = PhotoGalleryViewModel()
-    @State private var selectedPhoto: Photo?
     
     private let columns = [
         GridItem(.adaptive(minimum: 120, maximum: 200), spacing: 2),
@@ -54,19 +54,16 @@ struct PhotoGridView: View {
             } else {
                 LazyVGrid(columns: columns, spacing: 2) {
                     ForEach(viewModel.photos) { photo in
-                        PhotoThumbnailView(photo: photo, viewModel: viewModel)
-                            .aspectRatio(1, contentMode: .fill)
-                            .clipped()
-                            .onTapGesture {
-                                selectedPhoto = photo
-                            }
+                        TransitionPhotoView(
+                            photo: photo, 
+                            allPhotos: viewModel.photos,
+                            viewModel: viewModel
+                        )
+                        .cornerRadius(8)
                     }
                 }
                 .padding(.horizontal, 1)
             }
-        }
-        .fullScreenCover(item: $selectedPhoto) { photo in
-            FullscreenPhotoView(photo: photo, allPhotos: viewModel.photos, selectedPhoto: $selectedPhoto)
         }
     }
 }
