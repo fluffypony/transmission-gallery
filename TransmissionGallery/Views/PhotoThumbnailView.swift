@@ -12,7 +12,7 @@ struct PhotoThumbnailView: View {
             if let thumbnailImage = thumbnailImage {
                 Image(uiImage: thumbnailImage)
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
             } else if isLoading {
                 Rectangle()
                     .fill(Color.gray.opacity(0.3))
@@ -30,6 +30,7 @@ struct PhotoThumbnailView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .aspectRatio(1, contentMode: .fit)
         .task {
             await loadThumbnail()
         }

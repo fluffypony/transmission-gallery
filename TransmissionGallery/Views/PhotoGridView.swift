@@ -5,7 +5,9 @@ struct PhotoGridView: View {
     @StateObject private var viewModel = PhotoGalleryViewModel()
     
     private let columns = [
-        GridItem(.adaptive(minimum: 120, maximum: 200), spacing: 2),
+        GridItem(.flexible(), spacing: 2),
+        GridItem(.flexible(), spacing: 2),
+        GridItem(.flexible(), spacing: 2)
     ]
     
     var body: some View {
@@ -51,7 +53,7 @@ struct PhotoGridView: View {
             } else if viewModel.photos.isEmpty {
                 EmptyStateView()
             } else {
-                LazyVGrid(columns: columns, spacing: 2) {
+                LazyVGrid(columns: columns, spacing: 4) {
                     ForEach(viewModel.photos) { photo in
                         TransitionPhotoView(
                             photo: photo, 
